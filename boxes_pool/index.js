@@ -47,7 +47,7 @@ class Box {
         this.h = h
         this.body = Bodies.rectangle(x, y, w, h, { friction: 0.05, restitution: 0.8 })
         this.color = fgcolor[Math.floor(random(0, 4))]
-        
+
         World.add(world, this.body)
     }
 
@@ -57,7 +57,7 @@ class Box {
 
         push()
         translate(pos.x, pos.y)
-        rotate(angle*PI/180)
+        rotate(angle * PI / 180)
         fill(this.color);
         rect(0, 0, this.w, this.h)
         pop()
@@ -71,16 +71,16 @@ function setup() {
     // create an engine
     engine = Engine.create();
     world = engine.world;
-if(window.navigator.platform.match(/win/i)== null){
-console.log(999)
-    setInterval(() => {
-        world.gravity.y = map(gravy, -90, 90, -1, 1)
-        world.gravity.x = map(gravx, 70, -70, -1, 1)
-    }, 20);
-}
- 
+    if (window.navigator.platform.match(/win/i) == null) {
+        console.log(999)
+        setInterval(() => {
+            world.gravity.y = map(gravy, -90, 90, -1, 1)
+            world.gravity.x = map(gravx, 70, -70, -1, 1)
+        }, 20);
+    }
 
-Engine.run(engine);
+
+    Engine.run(engine);
 
 
     ground = Bodies.rectangle(width / 2, height, width, 40, { isStatic: true })
@@ -105,6 +105,12 @@ function draw() {
     text(gravx, 10, 30);
     text(gravy, 10, 60);
     text(gravz, 10, 90);
+    push();
+    textSize(15)
+    textAlign(LEFT, BOTTOM);
+    fill(120)
+    text("created by mahdiyar anari", 0, height-7);
+    pop();
 
 }
 
