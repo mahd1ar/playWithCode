@@ -100,13 +100,14 @@ function draw() {
     boxes.forEach(e => {
         e.show()
     })
-    textSize(32);
-    fill(179)
-    text(gravx, 10, 30);
-    text(gravy, 10, 60);
-    text(gravz, 10, 90);
-    push();
     textSize(15)
+    fill(179)
+    text(gravx, 10, 10+5);
+    text(gravy, 10, 25+5);
+    text(gravz, 10, 40+5);
+    textAlign(CENTER,CENTER)
+    boxes.length == 0 && text("click anyware",width/2,height/2)
+    push();
     textAlign(LEFT, BOTTOM);
     fill(120)
     text("created by mahdiyar anari", 0, height-7);
