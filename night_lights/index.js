@@ -1,6 +1,6 @@
 
 
-let bgcolor = "#111"
+let bgcolor = "#101"
 let fgcolor;
 function randomint(min, max) {
     return Math.floor(Math.random() * max) + min
@@ -12,11 +12,12 @@ function radialGradient(x, y, w, h, inner, outer) {
         const colour = lerpColor(inner, outer, step);
         fill(colour);
         ellipse(x, y, step * w, step * h);
+        
     }
-    
-    strokeWeight(4)
+
+    strokeWeight(3)
     stroke("#fff")
-    point(x,y)
+    point(x, y)
 }
 
 flyboxArry = [];
@@ -45,9 +46,9 @@ class FlyingBox {
         rotate(this.angel)
 
         strokeWeight(1);
-        
-        let x = - this.w / 2 - map((mouseY - height / 2), 0, height / 2, -5, 5)
-        let y = -this.h / 2 + map((mouseX - width / 2), 0, width / 2, -7, 7)
+
+        let x = - this.w / 2 - map((mouseY - height / 2), 0, height / 2, -3, 3)
+        let y = -this.h / 2 + map((mouseX - width / 2), 0, width / 2, -3, 3)
         radialGradient(
             x,
             y,
@@ -55,9 +56,7 @@ class FlyingBox {
             this.h,
             fgcolor[this.color][0],
             fgcolor[this.color][1],
-
         )
-
 
         pop()
 
@@ -71,14 +70,14 @@ function setup() {
     fgcolor = [
         [color(249, 70, 101, 0.1), color(118, 25, 49, 1.9)],
         [color(41, 54, 195, 0.9), color(9, 22, 112, 1.9)],
-        [color(56, 8, 90,0.6), color(143, 36, 205, 0.9)],
+        [color(175, 61, 255, 2), color(175, 61, 255, 0.2)],
     ];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 80; i++) {
         setTimeout(() => {
 
-            let wAndH = random(1, 100)
+            let wAndH = random(10, 40)
             let fb = new FlyingBox(random(0, width),
-                random(height - 300, height - 200),
+                random(height, height - 200),
                 wAndH,
                 wAndH,
                 (Math.random() * 1.5).toFixed(2),
