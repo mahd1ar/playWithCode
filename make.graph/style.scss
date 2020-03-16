@@ -7,6 +7,7 @@ body,
 canvas {
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 canvas {
     width: 100vw;
@@ -23,27 +24,39 @@ a {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(73, 240, 255);
+    background-color: #21e6c1;
+    color: #071e3d;
     overflow: hidden;
     // z-index: 2;
     flex-direction: row;
-    flex-grow: 1;
+    flex-shrink: 0;
+    flex-grow: 0;
     justify-content: stretch;
+    border-radius: 8px;
+    padding-left: 4px;
+    span{
+        flex-basis: 200px;
+        align-self: center;
+        font-weight: bold;
+        color: #1f4287;
+    }
     input {
-        flex: 4;
-        border: 1px solid gray;
+width: 200px;
+        padding-left: 13px;
+        border:none;
+        border-bottom: 2px dashed #1f4287;
         background: none;
         font-size: 24px;
     }
     div {
-        flex: 1;
+flex-basis: 100px;
         display: block;
+        background-color: #278ea5;
         width: 100%;
         text-align: center;
         padding: 10px;
         font-weight: bold;
         cursor: pointer;
-        background-color: red;
     }
 }
 

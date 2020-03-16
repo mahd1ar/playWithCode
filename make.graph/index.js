@@ -9,9 +9,10 @@ $('#submit').click(function (e) {
     e.preventDefault();
     let val = $('input').val()
 
-    fx = val.replace(/(\d+)(x|\(.*\))/, '$1*$2')
+    fx = val.replace(/(\d+)(x|\(.*\))/gi, '$1*$2')
     console.log(fx)
     fx = fx.replace(/(\(.*\))?(x)?(\d{0,})?\^(\d{1,})/gi, 'pow($1$2$3,$4)')
+    fx = fx.replace('X', 'x')
     console.log(fx)
 
 
@@ -62,14 +63,20 @@ function setup() {
 function draw() {
     let { cx, cy } = canvasCenter;
 
-
-
     translate(cx, cy);
-
 
     pg.push()
     pg.translate(cx, cy)
-    pg.stroke(25, 33, 0);
+    //  R, G, B 
+    //33, 230, 193 ===> 39, 142, 165
+    pg.stroke(
+        map(prv_val && prv_val.x ||startx, 0, cx, 100, 250),
+        map(prv_val && prv_val.y ||startx, 0, cy, 100, 250),
+        map(startx, 0, cx, 200, 110),
+    );
+    
+
+    
     pg.strokeWeight(1);
 
     let start_nx = -startx
@@ -78,7 +85,6 @@ function draw() {
     let v;
     try {
         v = createVector(startx * 10, -eval(fx.replace(/x/gi, startx)) * 10)
-
     } catch (error) {
         Toastify({
             text: error,
@@ -90,7 +96,6 @@ function draw() {
             position: 'left', // `left`, `center` or `right`
             backgroundColor: "linear-gradient(to right, ##FF5F6D, ##FFC371)",
             stopOnFocus: true, // Prevents dismissing of toast on hover
-            // onClick: function(){} // Callback after click
         }).showToast();
 
         noLoop()
@@ -102,7 +107,6 @@ function draw() {
     pg.endShape()
 
     // -
-
     pg.beginShape()
     let nv = createVector(start_nx * 10, -eval(fx.replace(/x/g, start_nx)) * 10)
     prv_n_val && pg.vertex(prv_n_val.x, prv_n_val.y)
@@ -114,7 +118,7 @@ function draw() {
 
     image(pg, -cx, -cy)
 
-    console.log(v.y)
+    // console.log(v.y)
     if ((-cy > v.y || v.y > cy || -cx > v.x || v.x > cx) && (-cy > nv.y || nv.y > cy || -cx > nv.x || nv.x > cx)) {
         noLoop()
     } else {
@@ -122,7 +126,7 @@ function draw() {
         startx += 0.2
     }
 
-    stroke(25, 204, 0);
+    stroke('#278ea5');
     line(-cx, 0, cx, 0);
     line(0, -cy, 0, cy);
 }

@@ -7,6 +7,7 @@ body,
 canvas {
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 canvas {
@@ -27,40 +28,54 @@ a {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  background-color: #49f0ff;
+  background-color: #21e6c1;
+  color: #071e3d;
   overflow: hidden;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
   -webkit-box-pack: stretch;
       -ms-flex-pack: stretch;
           justify-content: stretch;
+  border-radius: 8px;
+  padding-left: 4px;
+}
+
+#draw-box span {
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-weight: bold;
+  color: #1f4287;
 }
 
 #draw-box input {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
-  border: 1px solid gray;
+  width: 200px;
+  padding-left: 13px;
+  border: none;
+  border-bottom: 2px dashed #1f4287;
   background: none;
   font-size: 24px;
 }
 
 #draw-box div {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex-preferred-size: 100px;
+      flex-basis: 100px;
   display: block;
+  background-color: #278ea5;
   width: 100%;
   text-align: center;
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
-  background-color: red;
 }
 
 #help {
