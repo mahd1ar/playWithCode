@@ -7,15 +7,26 @@
     <title>draw</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 
 <body>
+    <div id="help"><a href="#ex1" rel="modal:open">?</a> </div>
+    <div id="ex1" class="modal">
+        <h2>Notation: </h2>
+        <p>variable is only x</p>
+        <p>power : x^4 </p>
+        <p>logarithm : log(x) </p>
+        <p>Triangles : sin(x) , cos(x) , tan(x) </p>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
     <div id="draw-box">
         <input type="text" id="input" value="sin(x)*3">
         <div id="submit">Submit</div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="p5.min.js"></script>
     <script src="index.js"></script>
