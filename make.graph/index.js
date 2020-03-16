@@ -9,39 +9,42 @@ $('#submit').click(function (e) {
     e.preventDefault();
     let val = $('input').val()
 
-    fx = val.replace(/(\(.*\))?(x)?(\d{0,})?\^(\d{1,})/gi, 'pow($1$2$3,$4)')
-
+    fx = val.replace(/(\d+)(x|\(.*\))/, '$1*$2')
     console.log(fx)
+    fx = fx.replace(/(\(.*\))?(x)?(\d{0,})?\^(\d{1,})/gi, 'pow($1$2$3,$4)')
+    console.log(fx)
+
+
     canvas_reset()
 });
 
-$("#input").keypress(function (e) {
-    // if (e.key.match(/[a-wyzA-WYZ]/g)) {
-    //     Toastify({
-    //         text: "از این کاراکتر نمیتوان استفاده کرد",
-    //         duration: 3000,
-    //         destination: "https://github.com/apvarun/toastify-js",
-    //         newWindow: true,
-    //         close: true,
-    //         gravity: "top", // `top` or `bottom`
-    //         position: 'left', // `left`, `center` or `right`
+// $("#input").keypress(function (e) {
+// if (e.key.match(/[a-wyzA-WYZ]/g)) {
+//     Toastify({
+//         text: "از این کاراکتر نمیتوان استفاده کرد",
+//         duration: 3000,
+//         destination: "https://github.com/apvarun/toastify-js",
+//         newWindow: true,
+//         close: true,
+//         gravity: "top", // `top` or `bottom`
+//         position: 'left', // `left`, `center` or `right`
 
-    //         backgroundColor: "linear-gradient(to right, ##FF5F6D, ##FFC371)",
-    //         stopOnFocus: true, // Prevents dismissing of toast on hover
-    //         // onClick: function(){} // Callback after click
-    //     }).showToast();
-    //     e.preventDefault()
+//         backgroundColor: "linear-gradient(to right, ##FF5F6D, ##FFC371)",
+//         stopOnFocus: true, // Prevents dismissing of toast on hover
+//         // onClick: function(){} // Callback after click
+//     }).showToast();
+//     e.preventDefault()
 
-    //     return 1;
-    // }
+//     return 1;
+// }
 
-});
+// });
 
 
 
 function canvas_reset() {
     prv_val = prv_n_val = null;
-    startx = 0;
+    startx = 0.01;
     pg.background(255);
     canvasCenter = { cx: canvas_WIDTH / 2, cy: canvas_HEIGHT / 2 }
     loop()
