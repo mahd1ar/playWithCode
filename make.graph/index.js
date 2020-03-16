@@ -85,7 +85,6 @@ function draw() {
             close: true,
             gravity: "top", // `top` or `bottom`
             position: 'left', // `left`, `center` or `right`
-
             backgroundColor: "linear-gradient(to right, ##FF5F6D, ##FFC371)",
             stopOnFocus: true, // Prevents dismissing of toast on hover
             // onClick: function(){} // Callback after click
