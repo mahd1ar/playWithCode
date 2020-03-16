@@ -1,0 +1,33 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+#draw-box {
+    position: fixed;
+    display: flex;
+    width: 200;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(73, 240, 255);
+    overflow: hidden;
+    z-index: 2;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: stretch;
+    input {
+        flex: 4;
+        width: auto;
+        border: 1px solid gray;
+        background: none;
+        font-size: 24px;
+    }
+    div {
+        flex: 1;
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+font-weight: bold;
+        cursor: pointer;
+    }
+}
