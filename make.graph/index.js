@@ -47,6 +47,7 @@ function canvas_reset() {
     prv_val = prv_n_val = null;
     startx = 0.01;
     pg.background(255);
+    setup()
     canvasCenter = { cx: canvas_WIDTH / 2, cy: canvas_HEIGHT / 2 }
     loop()
 
@@ -55,7 +56,18 @@ function canvas_reset() {
 function setup() {
     frameRate(60)
     let canvas = createCanvas(canvas_WIDTH, canvas_HEIGHT);
-    console.log(canvas);
+
+    // grid
+    stroke('#eee')
+    for (let i = innerWidth / 2; i < innerWidth; i += 20) {
+        line(i, 0, i, innerHeight)
+        line(innerWidth - i, 0, innerWidth - i, innerHeight)
+
+    }
+    for (let j = innerHeight / 2; j < innerHeight; j += 20) {
+        line(0, j, innerWidth, j)
+        line(0, innerHeight - j, innerWidth, innerHeight - j)
+    }
     pg = createGraphics(canvas_WIDTH, canvas_HEIGHT)
 }
 
@@ -70,13 +82,13 @@ function draw() {
     //  R, G, B 
     //33, 230, 193 ===> 39, 142, 165
     pg.stroke(
-        map(prv_val && prv_val.x ||startx, 0, cx, 100, 250),
-        map(prv_val && prv_val.y ||startx, 0, cy, 100, 250),
+        map(prv_val && prv_val.x || startx, 0, cx, 100, 250),
+        map(prv_val && prv_val.y || startx, 0, cy, 100, 250),
         map(startx, 0, cx, 200, 110),
     );
-    
 
-    
+
+
     pg.strokeWeight(1);
 
     let start_nx = -startx
@@ -84,7 +96,7 @@ function draw() {
     pg.beginShape()
     let v;
     try {
-        v = createVector(startx * 10, -eval(fx.replace(/x/gi, startx)) * 10)
+        v = createVector(startx * 20, -eval(fx.replace(/x/gi, startx)) * 20)
     } catch (error) {
         Toastify({
             text: error,
@@ -99,7 +111,7 @@ function draw() {
         }).showToast();
 
         noLoop()
-        return 1
+
     }
     prv_val && pg.vertex(prv_val.x, prv_val.y)
     prv_val = v
@@ -108,7 +120,7 @@ function draw() {
 
     // -
     pg.beginShape()
-    let nv = createVector(start_nx * 10, -eval(fx.replace(/x/g, start_nx)) * 10)
+    let nv = createVector(start_nx * 20, -eval(fx.replace(/x/g, start_nx)) * 20)
     prv_n_val && pg.vertex(prv_n_val.x, prv_n_val.y)
     prv_n_val = nv
     pg.vertex(prv_n_val.x, prv_n_val.y)
