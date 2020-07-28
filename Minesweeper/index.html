@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<div x-data="main()" id="main">
+    <h1>bomb count:</h1>
+    <b x-text="bombsCount"></b>
+    <hr>
+    <br>
+    <div id="box">
+        <template x-for="(r,inx) in matrix" :key="'r'+inx">
+            <div>
+
+                <template x-for="c, in r" :key="c.id">
+                    <!-- &#11036; -->
+                    <!-- x-text="c.isBomb ? '&#128163;' : c.count" -->
+                    <!-- <span> -->
+
+                        <span class="cell" :id="'cell'+c.id" x-text="c.display"
+                            @click="clr(c.id.replace('cell',''))"></span>
+                        <!-- <span x-text="c.isBomb ? 'B' : c.count"></span> -->
+                    <!-- </span> -->
+                </template>
+
+            </div>
+        </template>
+    </div>
+    <br>
+
+</div>
+
+
+
+
+<body>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
