@@ -4,44 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>minesweeper</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
 <div x-data="main()" id="main">
-    <h1>bomb count:</h1>
-    <b x-text="bombsCount"></b>
-    <hr>
-    <br>
-    <div id="box">
-        <template x-for="(r,inx) in matrix" :key="'r'+inx">
-            <div>
-
-                <template x-for="c, in r" :key="c.id">
-                    <!-- &#11036; -->
-                    <!-- x-text="c.isBomb ? '&#128163;' : c.count" -->
-                    <!-- <span> -->
-
-                        <span class="cell" :id="'cell'+c.id" x-text="c.display"
-                            @click="clr(c.id.replace('cell',''))"></span>
-                        <!-- <span x-text="c.isBomb ? 'B' : c.count"></span> -->
-                    <!-- </span> -->
-                </template>
-
-            </div>
-        </template>
+    <div id="title">
+        <h4>minesweeper 🏳</h4>
     </div>
-    <br>
+
+    <ul id="stat">
+        <li x-text=" '💣' + bombsCount"></li>
+        <li x-text="'⬜' + remainsCount()"></li>
+        <li x-text="'🚩' + flagedCount()"></li>
+    </ul>
+    <div id="box-container">
+        <div id="box">
+            <template x-for="(r,inx) in matrix" :key="'r'+inx">
+
+                <div>
+                    <template x-for="c, in r" :key="c.id">
+                        <span class="cell" :id="'cell'+c.id" x-text="c.display"
+                            @click="clear(c.id.replace('cell',''))"></span>
+                    </template>
+                </div>
+
+            </template>
+        </div>
+    </div>
+    <!-- </div>
+    </template> -->
+
+    <div class="dialog" x-show.transition.scale="status == 'success'">
+        <img src="https://media.giphy.com/media/3oz8xDLuiN1GcDA3xC/giphy.gif" alt="" srcset="">
+        <div id="btn-container">
+            <span id="btn" @click="restart()">let Do it again!</span>
+        </div>
+    </div>
+
+    <div class="dialog" x-show.transition.scale="status == 'gameOver'" style="background-color: orange;">
+        <h1> GAME OVER </h1>
+        <div id="btn-container">
+            <span id="btn" @click="restart()">let Do it again!</span>
+        </div>
+    </div>
+
+    <div class="dialog" style="display: block;" x-show.transition.scale="status == 'setup'">
+        <div id="form">
+
+            <label for="setup-rows">Rows</label>
+            <input id="setup-rows" type="text" x-model="rows">
+            <code x-text="parseInt(rows) ? parseInt(rows) +'x'+parseInt(rows)+' boxes' : '??'"></code>
+            <label for="setup-difficulty">difficulty</label>
+            <select name="" id="setup-difficulty" x-model="difficulty">
+                <option value="0.15">easy</option>
+                <option value="0.25">medium</option>
+                <option value="0.35">hard</option>
+            </select>
+
+            <div id="btn-container">
+                <span id="btn" @click="start">let go!</span>
+            </div>
+        </div>
+    </div>
 
 </div>
 
-
-
-
 <body>
-
-    <script src="index.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

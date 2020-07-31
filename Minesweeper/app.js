@@ -22,7 +22,7 @@ class Matrix {
         return matrix;
     }
 
-    fill(odds) {
+    fill(odds) { //fill with bombs
 
         this.matrix.forEach(a => {
             a.forEach(a2 => {
@@ -60,51 +60,76 @@ class Matrix {
         }
     }
 
-
-    log() {
-        let m = JSON.parse(JSON.stringify(this.matrix))
-        let r = m.map(i => {
-            return i.map(j => {
-                return JSON.stringify(j)
-            })
-        })
-        console.table(r)
-    }
 }
 
 
 function main() {
-    let m = new Matrix(6, 6)
-    m.fill(0.1);
-    m.calc();
 
     return {
-        matrix: m.matrix,
-        bombsCount: m.matrix.flat().filter(i => i.isBomb == true).length,
+        matrix: [],
+        status: 'setup',
+        rows: 5,
+        difficulty: 0.15,
         stack: [],
-        setFlag(id) {
+        bombsCount: 0,
+        start() {
+            let rows = parseInt(this.rows)
+            if (rows < 5) {
+                alert('The number of rows can not be less than 5')
+                return
+            }
+            let m = new Matrix(rows, rows);
+            m.fill(Number(this.difficulty));
+            m.calc();
 
+            this.bombsCount = m.matrix.flat().filter(i => i.isBomb == true).length;
+            this.matrix = m.matrix;
+
+            this.status = 'playing';
+        },
+        remainsCount() {
+            return this.matrix.flat().filter(i => i.display == '⬜').length
+        },
+        flagedCount() {
+            return this.matrix.flat().filter(i => i.display == '🚩').length
+        },
+        setFlag(id) {
             let ref = this.matrix.flat().find(i => i.id == id);
+
+            if (!ref.flaged && this.flagedCount() + 1 > this.bombsCount) {
+                alert('You ran out of flags')
+                return;
+            }
 
             ref.flaged = !ref.flaged;
 
             ref.display = ref.flaged ? '🚩' : '⬜';
-
+            this.getResult()
         },
 
-        clr(id) {
-            // debugger
+        clear(id) {
+
             let i = Number(id[0])
             let j = Number(id[1])
 
             if (this.matrix[i][j].isBomb == true) {
-                alert('game over');
-                window.location.reload()
+                this.matrix.flat().forEach(e => {
+                    if (e.isBomb == true) {
+                        e.display = '💣';
+                    } else {
+                        e.display = e.count || ' ';
+                    }
+                })
+
+                this.matrix[i][j].display = '🔥'
+                setTimeout(() => {
+                    this.status = 'gameOver'
+                }, 1300);
                 return 0;
 
             }
             this.matrix[i][j].display = this.matrix[i][j].count != '0' ? this.matrix[i][j].count : ' ';
-
+            this.getResult()
             if (this.matrix[i][j].count != 0 || this.stack.includes(id)) {
                 return 1
             }
@@ -121,15 +146,33 @@ function main() {
                                 continue
                             }
 
-                            this.clr(currentId)
+                            this.clear(currentId)
 
                         }
                     }
                 }
             }
 
+
+
+        },
+
+        getResult() {
+            if (this.remainsCount() != 0) {
+                return
+            }
+            this.status = 'success';
+
+
+        },
+
+        restart() {
+            this.matrix = [[]];
+            this.status = 'setup';
+            this.stack = [];
         }
-    };
+
+    }
 }
 
 document.querySelector('#main').addEventListener('contextmenu', (ev) => {

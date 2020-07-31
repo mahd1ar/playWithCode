@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,600;1,400&display=swap");
+span.cell {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60px;
+  height: 60px;
+  font-size: 42px;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#box-container {
+  text-align: center;
+}
+
+#box {
+  border: 2px solid #a5a5a5;
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+
+#btn {
+  background-color: #0fcf9a;
+  padding: 12px;
+  margin-top: 22px;
+  display: inline-block;
+  color: #116b59;
+  font-size: 24px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px 3px #d8d8d8;
+          box-shadow: 0 0 10px 3px #d8d8d8;
+  cursor: pointer;
+}
+
+#btn-container {
+  text-align: center;
+  margin-top: 12px;
+}
+
+#title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #1E9CDE;
+  padding: 12px 24px;
+  color: #EEF2FC;
+  font-size: 30px;
+  text-transform: capitalize;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+ul {
+  font-size: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  margin-bottom: 30px;
+}
+
+li {
+  margin: 0 12px;
+}
+
+.dialog {
+  top: 0;
+  width: 100vw;
+  position: fixed;
+  background-color: #6d6d6d52;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 27px;
+  color: #333 !important;
+  background-color: white;
+  padding: 1rem;
+}
+
+#form code {
+  font-weight: 400;
+  background: #fff0fe;
+  display: inline;
+  font-size: 18px;
+  color: #ff7fa4;
+  padding: 4px;
+  margin-bottom: 9px;
+  margin-top: -6px;
+}
+
+select, input {
+  margin-bottom: 12px;
+  height: 40px;
+  width: 300px;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0px 8px;
+}
+/*# sourceMappingURL=style.css.map */
